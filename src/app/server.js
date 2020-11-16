@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const server = express();
 
+require('../app');
+
 server.use(cors());
 
 const url = 'http://queimadas.dgi.inpe.br/queimadas/dados-abertos/download/?utm_campaign=dados-abertos&outputFormat=json&utm_medium=landing-page&time=48h&utm_content=focos_brasil_48h&id=focos_brasil&utm_source=landing-page'; 
@@ -11,7 +13,6 @@ const url = 'http://queimadas.dgi.inpe.br/queimadas/dados-abertos/download/?utm_
 server.get('/',async(_req,res) => {
     try {
         const {data} = await axios(url);
-        console.log(data);
         res.json(data);
     } catch (error) {
        console.log(error);
